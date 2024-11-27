@@ -1,0 +1,36 @@
+name: My First Github Actions(simple java build and test)
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    #checkout the repository
+      - name: checkout code
+        uses: actions/checkout@v3 
+    #setup java environment    
+      - name: setup JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17' 
+    #cache dependencies(dependencies downloaded during a build and reused these dependencies insted of installing them,when a workflows run again.)
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+    # install dependencies and run tests
+
+      - name: Run tests
+        run: |
+          mvn install
+          mvn test
+  
