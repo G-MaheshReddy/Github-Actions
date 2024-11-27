@@ -17,13 +17,18 @@
     </dependencies>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M8</version>
-            </plugin>
-        </plugins>
-    </build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version> <!-- Use an up-to-date version -->
+            <configuration>
+                <source>17</source>  <!-- Set the source version to 17 -->
+                <target>17</target>  <!-- Set the target version to 17 -->
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
 </project>
 
